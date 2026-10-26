@@ -5,17 +5,16 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { profile } from "@/data/portfolio";
+import { allowIndexing, createPageMetadata, siteTitle } from "@/lib/metadata";
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.website),
+  ...createPageMetadata({ path: "/" }),
   title: {
-    default: `${profile.name} — Senior Backend Engineer & Agentic AI`,
+    default: siteTitle,
     template: `%s | ${profile.name}`,
   },
-  description: `${profile.name}, ${profile.currentRole} at ${profile.employer}. Python, FastAPI, enterprise RAG, and agentic AI. Based in ${profile.location}.`,
-  alternates: { canonical: "/" },
-  // Static HTML is generated separately for production and preview deployments.
-  robots: { index: process.env.ALLOW_INDEXING === "true", follow: true },
+  robots: { index: allowIndexing, follow: true },
 };
 
 export default function RootLayout({

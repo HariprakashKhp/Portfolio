@@ -178,14 +178,24 @@ svg {
   font-size: 1rem;
   line-height: 1.35;
 }
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
+.brand-avatar {
+  display: block;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: var(--radius-control);
-  color: var(--primary);
+  border-radius: 50%;
+  background: var(--surface);
+}
+.brand-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.45);
+  transform-origin: center 20%;
 }
 .brand-subtitle {
   display: block;
@@ -239,11 +249,40 @@ svg {
   background: var(--primary);
 }
 .hero {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  align-items: center;
-  gap: 5.5rem;
-  padding-block: 6.5rem 6rem;
+  padding-block: 2rem 3.5rem;
+}
+.hero-copy {
+  max-width: 43rem;
+}
+.portrait-surface {
+  position: relative;
+  isolation: isolate;
+  background: var(--background);
+}
+.portrait-surface::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  width: min(68%, 46rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+  background: url("/images/hari-portrait-line-art.webp") top right / contain no-repeat;
+  /* Screen removes the inverted paper; only the portrait's light ink remains. */
+  filter: invert(1);
+  mix-blend-mode: screen;
+  opacity: 0.08;
+  mask-image: radial-gradient(ellipse at 58% 35%, #000 20%, transparent 72%);
+}
+.hero::before {
+  height: 100%;
+  aspect-ratio: auto;
+  background-position: center right;
+}
+.about-page::before {
+  width: min(65%, 43rem);
+  opacity: 0.06;
 }
 .hero h1 {
   margin-top: 1.7rem;
@@ -596,6 +635,82 @@ svg {
 .section-heading h2 {
   margin-top: 0.9rem;
 }
+.impact-intro {
+  margin-top: 1rem;
+  max-width: 42rem;
+  font-size: 0.9rem;
+}
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem;
+  margin: 2rem 0 1.5rem;
+}
+.impact-item {
+  min-width: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.impact-item dt {
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+.impact-item dd {
+  margin: 0;
+}
+.impact-item .impact-value {
+  margin-block: 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 3.25rem);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: var(--primary);
+}
+.impact-description {
+  max-width: 48ch;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.impact-item .impact-context {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.project-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+.project-note h2 {
+  font-size: 1.15rem;
+  letter-spacing: -0.025em;
+}
+.project-note p {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+}
+.project-note > .action {
+  flex-shrink: 0;
+}
+.learning-overview {
+  margin-top: 1.25rem;
+  max-width: 60ch;
+}
+.learning-overview p {
+  font-size: 0.9rem;
+}
+.learning-overview p + p {
+  margin-top: 0.6rem;
+}
+.learning-overview .learning-plan-label {
+  margin: 0 0.4rem 0 0;
+  color: var(--secondary);
+  font-family: var(--font-utility);
+  font-size: 0.75rem;
+}
 .focus-section {
   display: grid;
   grid-template-columns: 1fr 1.85fr;
@@ -763,7 +878,10 @@ svg {
   max-width: 32rem;
   font-size: 0.9rem;
 }
-.closing-section .action {
+.closing-section h2 {
+  max-width: 26ch;
+}
+.closing-section .actions {
   margin-top: 1.8rem;
 }
 .site-footer {
@@ -867,6 +985,63 @@ svg {
 }
 .education-grid article > p:last-child {
   font-size: 0.9rem;
+}
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.learning-panel {
+  min-width: 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+}
+.learning-panel > h3 {
+  font-size: 1.3rem;
+}
+.learning-note {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+}
+.learning-plan-label {
+  margin-top: 1.25rem;
+  color: var(--secondary);
+}
+.learning-plan-label + .learning-note {
+  margin-top: 0.65rem;
+}
+.learning-list {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.learning-list > li {
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.learning-list > li:last-child {
+  padding-bottom: 0;
+}
+.learning-list h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.learning-list p {
+  margin-top: 0.65rem;
+  font-size: 0.85rem;
+}
+.learning-list .learning-meta {
+  font-size: 0.75rem;
+}
+.learning-list .action {
+  margin-top: 0.75rem;
 }
 .resume-panel {
   border: 1px solid var(--line);
@@ -1024,9 +1199,6 @@ svg {
   .container {
     width: min(calc(100% - 4rem), var(--page-max));
   }
-  .hero {
-    gap: 2.5rem;
-  }
   .navigation nav {
     gap: 1.1rem;
   }
@@ -1089,19 +1261,23 @@ svg {
     bottom: 0;
   }
   .hero {
-    grid-template-columns: 1fr;
-    padding-block: 3.7rem 4rem;
-    gap: 3rem;
+    padding-block: 1.5rem 3rem;
   }
   .hero h1 {
     font-size: clamp(3.1rem, 10vw, 4.8rem);
   }
+  .portrait-surface::before {
+    background-image: url("/images/hari-portrait-line-art-mobile.webp");
+    width: min(100%, 32rem);
+    opacity: 0.05;
+    mask-image: radial-gradient(ellipse at 65% 30%, #000 10%, transparent 70%);
+  }
+  .about-page::before {
+    top: 1rem;
+    opacity: 0.04;
+  }
   .hero-description {
     max-width: 38rem;
-  }
-  .hero .system-figure {
-    width: 100%;
-    max-width: 30rem;
   }
   .hero-footnote {
     margin-top: 1.2rem;
@@ -1155,7 +1331,17 @@ svg {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
-  .education-grid {
+  .project-note {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .impact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .education-grid,
+  .learning-grid {
     grid-template-columns: 1fr;
   }
   .content-note {
@@ -1204,11 +1390,14 @@ svg {
   .flow-branches > div {
     border: 1px solid ButtonText;
   }
-  .brand-mark,
+  .brand-avatar,
   .system-node--accent {
     border-color: Highlight;
   }
   :focus-visible {
     outline-color: Highlight;
+  }
+  .portrait-surface::before {
+    display: none;
   }
 }

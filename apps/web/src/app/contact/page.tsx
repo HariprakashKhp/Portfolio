@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import { PageHeading } from "@/components/page-heading";
 import { EmptyState } from "@/components/empty-state";
 import { ArrowIcon } from "@/components/icon";
 import { profile } from "@/data/portfolio";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact",
-  alternates: { canonical: "/contact/" },
-};
+  path: "/contact/",
+  description: "Connect with Hari Prakash K about backend engineering, applied AI, and opportunities through email, GitHub, or LinkedIn.",
+});
 
 export default function ContactPage() {
   const links = [

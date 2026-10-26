@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#111820"/>
+  <path d="M40 64v502" stroke="#A7C7E7" stroke-width="3"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="78" y="112" fill="#F1F3F5" font-size="36" font-weight="700">Hari Prakash K</text>
+    <text x="78" y="157" fill="#A9B5C2" font-size="22">Python backend engineering &amp; agentic AI</text>
+    <text x="74" y="294" fill="#F1F3F5" font-size="70" font-weight="700" letter-spacing="-2">Backend engineering.</text>
+    <text x="74" y="377" fill="#A7C7E7" font-size="70" font-weight="700" letter-spacing="-2">Applied AI.</text>
+    <text x="78" y="452" fill="#A9B5C2" font-size="23">Python / FastAPI / RAG / AWS</text>
+    <path d="M78 514h1044" stroke="#32404E"/>
+    <text x="78" y="566" fill="#D4B59A" font-size="24">hariprakash.in</text>
+  </g>
+  <g transform="translate(1058 68)">
+    <rect width="64" height="64" rx="14" fill="#18222D"/>
+    <path d="M17 14h8v14h14V14h8v36h-8V36H25v14h-8Z" fill="#A7C7E7"/>
+  </g>
+</svg>

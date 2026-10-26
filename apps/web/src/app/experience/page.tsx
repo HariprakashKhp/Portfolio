@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import { PageHeading } from "@/components/page-heading";
 import { EmptyState } from "@/components/empty-state";
 import { profile } from "@/data/portfolio";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Experience",
-  alternates: { canonical: "/experience/" },
-};
+  path: "/experience/",
+  description: "Hari Prakash K at Odessa Solutions: backend engineering, enterprise RAG, agentic AI, and measurable engineering outcomes.",
+});
 
 export default function ExperiencePage() {
   return (

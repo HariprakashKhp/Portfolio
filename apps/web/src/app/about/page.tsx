@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import { PageHeading } from "@/components/page-heading";
+import { LearningSection } from "@/components/learning-section";
 import { profile, skillGroups } from "@/data/portfolio";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "About",
-  alternates: { canonical: "/about/" },
-};
+  path: "/about/",
+  description: "Career background, engineering interests, skills, education, and continuing learning from Hari Prakash K.",
+});
 
 export default function About() {
   return (
-    <div className="container inner-page">
+    <div className="container inner-page about-page portrait-surface">
       <PageHeading eyebrow="About" title="The person behind the systems.">
         <p>
           {profile.headline}. Based in {profile.location}.
@@ -51,6 +54,7 @@ export default function About() {
           ))}
         </div>
       </section>
+      <LearningSection />
     </div>
   );
 }

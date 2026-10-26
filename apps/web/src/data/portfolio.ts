@@ -193,6 +193,29 @@ export const focusAreas: readonly FocusArea[] = [
   },
 ];
 
+export type ImpactHighlight = {
+  value: string;
+  title: string;
+  description: string;
+  context: string;
+};
+
+// Selected from the resume-backed experience above. Preserve role attribution.
+export const impactHighlights: readonly ImpactHighlight[] = [
+  {
+    value: "30%",
+    title: "Lower API response latency",
+    description: "Asynchronous Python/FastAPI services and SQLAlchemy connection pooling across high-volume data workloads.",
+    context: "Odessa Solutions | Senior Software Engineer",
+  },
+  {
+    value: "35%",
+    title: "Lower token and cloud compute costs",
+    description: "Containerized local/cloud LLM integration supporting on-premises enterprise data requirements.",
+    context: "Odessa Solutions | Staff Engineer",
+  },
+];
+
 export const navigation = [
   { href: "/", label: "Home" },
   { href: "/about/", label: "About" },
