@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { navigation, profile } from "@/data/portfolio";
-import { BrandMark } from "./icon";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -31,8 +31,14 @@ export function SiteHeader() {
         aria-label="Portfolio home"
         onClick={() => setOpen(false)}
       >
-        <span className="brand-mark">
-          <BrandMark />
+        <span className="brand-avatar">
+          <Image
+            src="/images/hari-avatar.webp"
+            alt=""
+            width={52}
+            height={52}
+            loading="eager"
+          />
         </span>
         <span>
           {profile.name ?? "Engineering"}

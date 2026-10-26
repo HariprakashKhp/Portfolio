@@ -13,7 +13,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write . ../../DESIGN.md ../../README.md",
     "format:check": "prettier --check . ../../DESIGN.md ../../README.md",
-    "test": "playwright test"
+    "test": "playwright test",
+    "assets:prepare": "node --experimental-strip-types scripts/prepare-assets.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.3.0",

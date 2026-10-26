@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import { PageHeading } from "@/components/page-heading";
 import { EmptyState } from "@/components/empty-state";
 import { profile } from "@/data/portfolio";
 import { ArrowIcon } from "@/components/icon";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Resume",
-  alternates: { canonical: "/resume/" },
-};
+  path: "/resume/",
+  description: "Download Hari Prakash K’s resume: Python backend engineering, agentic AI, AWS, experience, and education.",
+});
 
 export default function ResumePage() {
   return (
