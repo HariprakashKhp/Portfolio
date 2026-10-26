@@ -8,7 +8,8 @@ import { EmptyState } from "@/components/empty-state";
 export const metadata: Metadata = createPageMetadata({
   title: "Projects",
   path: "/projects/",
-  description: "Personal engineering project case studies from Hari Prakash K will be published here when ready.",
+  description:
+    "Explore Twin on AWS, BugFixer in progress, and a DeepEval lab for agent and RAG evaluation by Hari Prakash K.",
 });
 
 export default function ProjectsPage() {
@@ -19,8 +20,8 @@ export default function ProjectsPage() {
         title="More than the finished result."
       >
         <p>
-          The problem, the architecture, and the tradeoffs. Case studies that
-          make the engineering visible.
+          Personal projects and evaluation experiments, with implementation
+          notes, source code, and a clear view of what is still in progress.
         </p>
       </PageHeading>
       {projects.length > 0 ? (
