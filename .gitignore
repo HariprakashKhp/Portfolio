@@ -1,0 +1,40 @@
+# Dependencies and local package caches
+node_modules/
+.npm-cache/
+.cache/
+
+# Generated builds and test artifacts
+.next/
+out/
+dist/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Local environment and credentials
+.env*
+!.env.example
+.aws/
+.wrangler/
+.dev.vars*
+
+# Local agent/editor state; keep Agent.md and AGENTS.md tracked
+.codex/
+.agents/
+.idea/
+*.suo
+*.user
+*.swp
+
+# Original resume sources stay local. The published PDF in apps/web/public is tracked.
+/Hari_Prakash_K_Resume.docx
+/Hari_Prakash_K_Resume.pdf
+
+# OS files and logs
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

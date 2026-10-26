@@ -1,0 +1,12 @@
+{
+  "profile": "marketing",
+  "sourceRoots": ["apps/web/src"],
+  "commands": {
+    "format": "npm --prefix apps/web run format:check",
+    "lint": "npm --prefix apps/web run lint",
+    "typecheck": "npm --prefix apps/web run typecheck",
+    "build": "npm --prefix apps/web run build",
+    "test": "npm --prefix apps/web test"
+  },
+  "requiredCommands": ["format", "lint", "typecheck", "build", "test"]
+}
