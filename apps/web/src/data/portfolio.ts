@@ -33,6 +33,11 @@ export type Profile = {
   employer: string;
   experienceSummary: string;
   biography: readonly string[];
+  problemSolving: {
+    introduction: string;
+    profiles: readonly { name: string; url: string }[];
+  };
+  professionalDevelopment: readonly string[];
   email: string | null;
   github: string | null;
   linkedin: string | null;
@@ -56,9 +61,21 @@ export const profile: Profile = {
   experienceSummary: "7+ years in engineering · 2+ years in agentic AI",
   biography: [
     "I’m Hari Prakash K, a Staff Engineer at Odessa Solutions, based in Bengaluru. My work spans enterprise finance and leasing systems, Python/FastAPI microservices, SQL performance engineering, and agentic AI.",
-    "Since joining Odessa in May 2019, I’ve progressed from Software Engineer to Senior Software Engineer and Staff Engineer. Today, I work on enterprise RAG, tool-calling agents, ticket triage, and backend architecture, alongside daily client conversations to clarify requirements.",
+    "Since joining Odessa in May 2019, I’ve progressed from Software Engineer to Senior Software Engineer and Staff Engineer. Today, I work on enterprise RAG, tool-calling agents, ticket triage, and backend architecture. I independently lead client calls, make delivery decisions, and take ownership of the work. I’ve also travelled to client locations for forward-deployed engineering work.",
     "My AI work includes a LangGraph/LangChain multi-agent RAG platform serving approximately 1,000 users, hybrid retrieval, and contributions to golden datasets for RAGAS evaluation. I also work with local LLMs for PII checks and request-data validation.",
     "Alongside my employer work, I have hands-on AWS deployment experience through personal projects. My work combines backend architecture, practical AI integration, and AI-assisted development.",
+    "Outside engineering, I go to the gym every day.",
+  ],
+  problemSolving: {
+    introduction: "I constantly practice problem solving on",
+    profiles: [
+      { name: "LeetCode", url: "https://leetcode.com/u/HariprakashKhp/" },
+      { name: "NeetCode", url: "https://neetcode.io/user/UncannyJonin210" },
+    ],
+  },
+  // Owner-supplied professional development; separate from employer achievements.
+  professionalDevelopment: [
+    "Strengthened my system design and architecture skills through Hello Interview’s YouTube channel and successfully cleared system-design and problem-solving interview rounds.",
   ],
   email: "hariprakash.khp@gmail.com",
   github: "https://github.com/HariprakashKhp",
@@ -78,7 +95,8 @@ export const profile: Profile = {
         "Reduced token and cloud compute costs by 35% through containerized local/cloud LLM integration while supporting on-premises enterprise data requirements.",
         "Used local LLMs for PII checks and request-data validation before forwarding requests to frontier models.",
         "Cut my individual delivery time by approximately 80% using Claude Code and Codex CLI for parallel development, debugging, agent context management, and code review.",
-        "Handle daily client calls to gather and clarify requirements, translating business needs into backend features and AI workflows.",
+        "Independently lead daily client calls and interactions, clarify requirements, make delivery decisions, and take ownership and responsibility for the resulting backend features and AI workflows.",
+        "Travelled to client locations for forward-deployed engineering work, working directly with clients on their requirements.",
       ],
     },
     {
@@ -116,6 +134,32 @@ export const profile: Profile = {
     },
   ],
 };
+
+// Generalized from the owner-supplied architecture.html and resume-backed work.
+// Keep the detailed source local; its assumptions and capacity targets are not achievements.
+export const professionalArchitecture = {
+  employer: "Odessa Solutions",
+  title: "Customer portal architecture.",
+  summary:
+    "My customer portal work spans Python/FastAPI services for reporting, billing, transactions, and inquiries, behind a CDN, API gateway, and WAF.",
+  areas: [
+    {
+      title: "Separate read and write paths",
+      description:
+        "Reads and reports use a SQL Server read database kept current through Change Data Capture. Transactional writes go through core leasing and payment APIs to the primary database.",
+    },
+    {
+      title: "Cache with financial correctness in mind",
+      description:
+        "Time-based refresh and change-driven invalidation keep cached portal data current. Account balances bypass the cache.",
+    },
+    {
+      title: "Shared APIs for agents",
+      description:
+        "Tool-calling agents use the same business APIs as the portal, reusing existing integrations for backend operations.",
+    },
+  ],
+} as const;
 
 export const skillGroups: readonly SkillGroup[] = [
   {
@@ -205,13 +249,15 @@ export const impactHighlights: readonly ImpactHighlight[] = [
   {
     value: "30%",
     title: "Lower API response latency",
-    description: "Asynchronous Python/FastAPI services and SQLAlchemy connection pooling across high-volume data workloads.",
+    description:
+      "Asynchronous Python/FastAPI services and SQLAlchemy connection pooling across high-volume data workloads.",
     context: "Odessa Solutions | Senior Software Engineer",
   },
   {
     value: "35%",
     title: "Lower token and cloud compute costs",
-    description: "Containerized local/cloud LLM integration supporting on-premises enterprise data requirements.",
+    description:
+      "Containerized local/cloud LLM integration supporting on-premises enterprise data requirements.",
     context: "Odessa Solutions | Staff Engineer",
   },
 ];

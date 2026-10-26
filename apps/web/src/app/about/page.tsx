@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import { createPageMetadata } from "@/lib/metadata";
 import { PageHeading } from "@/components/page-heading";
 import { LearningSection } from "@/components/learning-section";
@@ -27,6 +28,18 @@ export default function About() {
           {profile.biography.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
+          <p>
+            {profile.problemSolving.introduction}{" "}
+            {profile.problemSolving.profiles.map((site, index) => (
+              <Fragment key={site.url}>
+                {index > 0 ? " and " : null}
+                <a className="inline-profile-link" href={site.url}>
+                  {site.name}
+                </a>
+              </Fragment>
+            ))}
+            .
+          </p>
         </section>
         <div className="focus-stack">
           {skillGroups.map((area) => (

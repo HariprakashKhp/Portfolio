@@ -268,7 +268,8 @@ svg {
   width: min(68%, 46rem);
   aspect-ratio: 1;
   pointer-events: none;
-  background: url("/images/hari-portrait-line-art.webp") top right / contain no-repeat;
+  background: url("/images/hari-portrait-line-art.webp") top right / contain
+    no-repeat;
   /* Screen removes the inverted paper; only the portrait's light ink remains. */
   filter: invert(1);
   mix-blend-mode: screen;
@@ -751,59 +752,149 @@ svg {
   border: 1px solid var(--line);
   border-radius: var(--radius-panel);
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  min-width: 0;
 }
-.project-visual {
-  position: relative;
-  padding: 3rem;
+.project-architecture {
+  min-width: 0;
   background: var(--surface);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 300px;
-  background-image: radial-gradient(var(--line) 0.7px, transparent 0.7px);
-  background-size: 18px 18px;
+  border-top: 1px solid var(--line);
 }
-.blueprint-frame {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  font-family: var(--font-utility);
-  font-size: 0.57rem;
+.project-architecture figcaption {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1.5rem 1.5rem 0;
 }
-.blueprint-frame > span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--line);
-  padding: 1rem 0.7rem;
-  background: var(--background);
-  border-radius: var(--radius-control);
+.project-architecture figcaption strong {
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
 }
-.blueprint-frame .blueprint-core {
-  padding-block: 1.6rem;
-  border-color: var(--primary);
-  color: var(--primary);
-}
-.blueprint-frame i {
-  flex: 1;
-  min-width: 8px;
-  border-top: 1px solid var(--primary);
-}
-.blueprint-caption {
+.project-architecture figcaption span,
+.architecture-scroll-hint,
+.architecture-legend {
   color: var(--muted);
+  font-size: 0.75rem;
+}
+.architecture-scroll-hint {
+  padding: 0.75rem 1.5rem 0;
+}
+.architecture-viewport {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.75rem;
+}
+.architecture-viewport:focus-visible {
+  outline-offset: -3px;
+}
+.architecture-canvas {
+  display: block;
+  width: 100%;
+  min-width: 1100px;
+  height: auto;
+  max-width: none;
+  font-family: var(--font-body);
+}
+.architecture-boundary rect {
+  fill: none;
+  stroke: var(--line);
+  stroke-dasharray: 5 5;
+}
+.architecture-boundary text {
+  fill: var(--muted);
   font-family: var(--font-utility);
-  font-size: 0.53rem;
-  letter-spacing: 0.04em;
-  margin-top: 1.8rem;
+  font-size: 14px;
+}
+.architecture-edge path {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+.architecture-edge--feedback path {
+  stroke-dasharray: 6 4;
+}
+.architecture-edge--configuration path {
+  stroke: var(--secondary);
+  stroke-dasharray: 6 4;
+}
+.architecture-edge text {
+  fill: var(--muted);
+  stroke: var(--surface);
+  stroke-width: 6px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  font-size: 13px;
+}
+.architecture-node rect {
+  fill: var(--background);
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+.architecture-node--model rect {
+  stroke: var(--primary);
+}
+.architecture-node--store rect {
+  stroke: var(--secondary);
+}
+.architecture-node--configuration rect {
+  stroke-dasharray: 5 4;
+}
+.architecture-node-title {
+  fill: var(--foreground);
+  font-size: 17px;
+  font-weight: 600;
+}
+.architecture-node-detail {
+  fill: var(--muted);
+  font-size: 14px;
+}
+.architecture-legend {
+  padding: 0.75rem 1.5rem 1.25rem;
+}
+.architecture-text {
+  border-top: 1px solid var(--line);
+  padding: 0 1.5rem;
+  font-size: 0.85rem;
+}
+.architecture-text summary {
+  min-height: 44px;
+  padding-block: 0.75rem;
+  color: var(--primary);
+  cursor: pointer;
+}
+.architecture-text summary:hover {
+  color: var(--foreground);
+}
+.architecture-text > p {
+  margin-block: 0.75rem;
+}
+.architecture-text ul {
+  padding-left: 1.25rem;
+  margin-block: 1rem;
+  color: var(--muted);
+}
+.architecture-text li + li {
+  margin-top: 0.5rem;
+}
+.case-architecture {
+  margin-block: 0 3rem;
+}
+.case-architecture > h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.25rem;
+}
+.case-architecture .project-architecture {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  overflow: hidden;
 }
 .project-copy {
   padding: 2.5rem;
 }
 .project-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.8rem;
   margin-bottom: 1.25rem;
@@ -811,7 +902,7 @@ svg {
   font-family: var(--font-utility);
   font-size: 0.65rem;
 }
-.draft-label {
+.project-status {
   display: inline-flex;
   align-items: center;
   width: fit-content;
@@ -823,10 +914,12 @@ svg {
   font-size: 0.6rem;
   line-height: 1.8;
 }
+.project-copy h2,
 .project-copy h3 {
   font-size: clamp(1.45rem, 2.5vw, 2rem);
   margin-bottom: 0.85rem;
 }
+.project-copy h2 a,
 .project-copy h3 a {
   display: flex;
   justify-content: space-between;
@@ -835,7 +928,7 @@ svg {
 }
 .project-copy > p {
   font-size: 0.85rem;
-  max-width: 48ch;
+  max-width: 72ch;
 }
 .text-link {
   display: inline-flex;
@@ -966,6 +1059,14 @@ svg {
   font-size: 0.92rem;
   line-height: 1.9;
 }
+.inline-profile-link {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.inline-profile-link:hover {
+  text-decoration-thickness: 2px;
+}
 .profile-section {
   margin-top: 4rem;
   padding-top: 3rem;
@@ -1002,6 +1103,15 @@ svg {
 .learning-panel > h3 {
   font-size: 1.3rem;
 }
+.learning-stack {
+  display: grid;
+  align-content: start;
+  gap: 1.5rem;
+  min-width: 0;
+}
+.credential-panel {
+  margin-top: 1.5rem;
+}
 .learning-note {
   margin-top: 1.25rem;
   font-size: 0.9rem;
@@ -1036,6 +1146,17 @@ svg {
 .learning-list p {
   margin-top: 0.65rem;
   font-size: 0.85rem;
+}
+.learning-list h4 a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--primary);
+}
+.learning-list h4 a:hover {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 .learning-list .learning-meta {
   font-size: 0.75rem;
@@ -1091,8 +1212,11 @@ svg {
 .content-note p {
   font-size: 0.8rem;
 }
-.content-note .draft-label {
+.content-note .project-status {
   flex-shrink: 0;
+}
+.case-tags {
+  margin-block: 0 2rem;
 }
 .project-list {
   display: grid;
@@ -1150,12 +1274,27 @@ svg {
 .experience-list h2 {
   margin-block: 0.8rem;
 }
-.experience-list ul {
+.experience-list ul,
+.work-architecture ul {
   padding-left: 1.25rem;
   color: var(--muted);
 }
-.experience-list li + li {
+.work-architecture > p:not(.eyebrow),
+.work-architecture ul,
+.development-copy {
+  margin-top: 1.5rem;
+}
+.development-copy p {
+  text-wrap: wrap;
+}
+.development-copy p + p,
+.experience-list li + li,
+.work-architecture li + li {
   margin-top: 0.9rem;
+}
+.work-architecture strong {
+  color: var(--foreground);
+  font-weight: 600;
 }
 .role-meta {
   font-size: 0.9rem;
@@ -1298,13 +1437,6 @@ svg {
     flex-direction: column;
     margin-bottom: 1.5rem;
   }
-  .project-card {
-    grid-template-columns: 1fr;
-  }
-  .project-visual {
-    min-height: 240px;
-    padding: 2rem;
-  }
   .project-copy {
     padding: 1.5rem;
   }
@@ -1399,5 +1531,27 @@ svg {
   }
   .portrait-surface::before {
     display: none;
+  }
+  .architecture-boundary rect {
+    stroke: GrayText;
+  }
+  .architecture-node rect {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+  .architecture-edge path {
+    stroke: LinkText;
+  }
+  .architecture-canvas marker path {
+    fill: LinkText;
+  }
+  .architecture-node-title,
+  .architecture-node-detail,
+  .architecture-boundary text,
+  .architecture-edge text {
+    fill: CanvasText;
+  }
+  .architecture-edge text {
+    stroke: Canvas;
   }
 }

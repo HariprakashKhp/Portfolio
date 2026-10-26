@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { createPageMetadata } from "@/lib/metadata";
 import { PageHeading } from "@/components/page-heading";
 import { EmptyState } from "@/components/empty-state";
-import { profile } from "@/data/portfolio";
+import { profile, professionalArchitecture } from "@/data/portfolio";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Experience",
   path: "/experience/",
-  description: "Hari Prakash K at Odessa Solutions: backend engineering, enterprise RAG, agentic AI, and measurable engineering outcomes.",
+  description:
+    "Hari Prakash K at Odessa Solutions: backend engineering, enterprise RAG, agentic AI, and measurable engineering outcomes.",
 });
 
 export default function ExperiencePage() {
@@ -52,6 +53,35 @@ export default function ExperiencePage() {
           </p>
         </EmptyState>
       )}
+      <section
+        className="profile-section work-architecture"
+        aria-labelledby="work-architecture-title"
+      >
+        <p className="eyebrow">
+          {professionalArchitecture.employer} · Selected work
+        </p>
+        <h2 id="work-architecture-title">{professionalArchitecture.title}</h2>
+        <p>{professionalArchitecture.summary}</p>
+        <ul>
+          {professionalArchitecture.areas.map((area) => (
+            <li key={area.title}>
+              <strong>{area.title}.</strong> {area.description}
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section
+        className="profile-section professional-development"
+        aria-labelledby="development-title"
+      >
+        <p className="eyebrow">Professional development</p>
+        <h2 id="development-title">System design and problem solving.</h2>
+        <div className="development-copy">
+          {profile.professionalDevelopment.map((point) => (
+            <p key={point}>{point}</p>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
