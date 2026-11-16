@@ -31,6 +31,9 @@ test-results/
 /Hari_Prakash_K_Resume.docx
 /Hari_Prakash_K_Resume.pdf
 
+# Detailed employer architecture stays local; publish only the generalized summary.
+/architecture.html
+
 # OS files and logs
 .DS_Store
 Thumbs.db

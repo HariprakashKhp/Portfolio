@@ -1075,6 +1075,30 @@ svg {
 .profile-section > h2 {
   margin-top: 1rem;
 }
+.project-overview > p:not(.eyebrow) {
+  margin-top: 1.5rem;
+}
+.project-overview-list {
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.project-overview-list > li {
+  min-width: 0;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.project-overview-list h3 {
+  margin-block: 0.75rem;
+  font-size: 1.2rem;
+}
+.project-overview-list h3 .text-link {
+  font-size: inherit;
+}
+.project-overview-list p {
+  font-size: 0.9rem;
+}
 .education-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

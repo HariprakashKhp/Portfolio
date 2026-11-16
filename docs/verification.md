@@ -1,5 +1,7 @@
 # Static skeleton verification
 
+> Historical results only. These runs predate later PDF, SEO, image, hero, learning, impact, and metadata changes. Read [PROJECT_NOTES.md](../PROJECT_NOTES.md) for the current handoff and [ToTest.md](../ToTest.md) for pending checks. No new verification was performed for those changes; do not treat older results or screenshots as proof of the current tree.
+
 ## Pause and play icons — 2026-10-26
 
 The homepage control now shows two pause bars while running and a play triangle while paused, with no visible checkbox or text label. A transparent native input preserves keyboard and no-JavaScript operation. The control has a 44px target, an accessible name, a tooltip, and a parent focus ring. Reduced-motion behavior is unchanged.

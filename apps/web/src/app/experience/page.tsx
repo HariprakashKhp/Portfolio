@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { createPageMetadata } from "@/lib/metadata";
 import { PageHeading } from "@/components/page-heading";
 import { EmptyState } from "@/components/empty-state";
+import { ImpactHighlights } from "@/components/impact-highlights";
+import { ProjectOverview } from "@/components/project-overview";
 import { profile, professionalArchitecture } from "@/data/portfolio";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Experience",
   path: "/experience/",
   description:
-    "Hari Prakash K at Odessa Solutions: backend engineering, enterprise RAG, agentic AI, and measurable engineering outcomes.",
+    "Hari Prakash K’s progression at Odessa Solutions: Python backend performance, enterprise RAG, agentic AI, client ownership, and separate personal evaluation projects.",
 });
 
 export default function ExperiencePage() {
@@ -16,13 +18,31 @@ export default function ExperiencePage() {
     <div className="container inner-page">
       <PageHeading
         eyebrow="Experience"
-        title="The work. The responsibility. The learning."
+        title="From enterprise backends to agentic AI."
       >
         <p>
-          {profile.experienceSummary}. Building enterprise finance and leasing
-          systems at {profile.employer}.
+          {profile.currentRole} at {profile.employer}.{" "}
+          {profile.experienceSummary}.
+        </p>
+        <p>
+          Building finance and leasing systems, from Python/FastAPI services
+          and SQL performance to enterprise RAG and tool-calling agents.
+          I independently lead client calls and own delivery decisions, and
+          have travelled to client locations for forward-deployed engineering work.
         </p>
       </PageHeading>
+      <section aria-labelledby="experience-impact-title">
+        <div className="section-heading">
+          <p className="eyebrow">Selected impact · {profile.employer}</p>
+          <h2 id="experience-impact-title">
+            Backend performance and AI efficiency.
+          </h2>
+          <p className="impact-intro">
+            Outcomes from my professional work, with the role behind each result.
+          </p>
+        </div>
+        <ImpactHighlights />
+      </section>
       {profile.experience.length ? (
         <div className="experience-list">
           {profile.experience.map((role) => (
@@ -82,6 +102,7 @@ export default function ExperiencePage() {
           ))}
         </div>
       </section>
+      <ProjectOverview />
     </div>
   );
 }

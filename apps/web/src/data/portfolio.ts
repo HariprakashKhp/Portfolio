@@ -20,6 +20,7 @@ export type Education = {
 
 export type SkillGroup = {
   title: string;
+  description?: string;
   skills: readonly string[];
 };
 
@@ -60,10 +61,10 @@ export const profile: Profile = {
   employer: "Odessa Solutions",
   experienceSummary: "7+ years in engineering · 2+ years in agentic AI",
   biography: [
-    "I’m Hari Prakash K, a Staff Engineer at Odessa Solutions, based in Bengaluru. My work spans enterprise finance and leasing systems, Python/FastAPI microservices, SQL performance engineering, and agentic AI.",
+    "I’m Hari Prakash K, a Staff Engineer at Odessa Solutions in Bengaluru, with 7+ years in engineering and 2+ years in agentic AI. I build Python/FastAPI services, improve SQL performance, and integrate AI into enterprise finance and leasing workflows.",
     "Since joining Odessa in May 2019, I’ve progressed from Software Engineer to Senior Software Engineer and Staff Engineer. Today, I work on enterprise RAG, tool-calling agents, ticket triage, and backend architecture. I independently lead client calls, make delivery decisions, and take ownership of the work. I’ve also travelled to client locations for forward-deployed engineering work.",
     "My AI work includes a LangGraph/LangChain multi-agent RAG platform serving approximately 1,000 users, hybrid retrieval, and contributions to golden datasets for RAGAS evaluation. I also work with local LLMs for PII checks and request-data validation.",
-    "Alongside my employer work, I have hands-on AWS deployment experience through personal projects. My work combines backend architecture, practical AI integration, and AI-assisted development.",
+    "Alongside my employer work, I use personal projects and evaluation exercises to explore AWS infrastructure, agent-assisted debugging, and the quality of agent and RAG responses. The project notebook records implementation details, architecture, and what is still in progress.",
     "Outside engineering, I go to the gym every day.",
   ],
   problemSolving: {
@@ -190,6 +191,20 @@ export const skillGroups: readonly SkillGroup[] = [
     ],
   },
   {
+    title: "Evaluation & quality",
+    description:
+      "RAGAS golden-dataset contributions at work; DeepEval metrics and pytest feedback in personal and learning projects.",
+    skills: [
+      "RAGAS",
+      "DeepEval",
+      "pytest",
+      "Golden datasets",
+      "Tool correctness",
+      "Retrieval evaluation",
+      "Conversation evaluation",
+    ],
+  },
+  {
     title: "Architecture",
     skills: [
       "System design",
@@ -204,10 +219,14 @@ export const skillGroups: readonly SkillGroup[] = [
   },
   {
     title: "Cloud & delivery",
+    description:
+      "AWS and infrastructure-as-code experience includes personal project deployments.",
     skills: [
       "AWS",
+      "Terraform",
       "Docker",
       "CI/CD",
+      "GitHub Actions",
       "Langfuse",
       "LangSmith",
       "Claude Code",
