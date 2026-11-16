@@ -2,6 +2,38 @@
 
 Prepared for `hariprakash.in` on 2026-10-26. This is a setup guide; no Git repository, Cloudflare project, deployment, DNS change, or live check has been performed by the agent for this update.
 
+## Publish the current update (2026-11-16)
+
+The repository already has origin `https://github.com/HariprakashKhp/Portfolio.git`; the observed local branch is `feature/next-update`. Use the existing repository and Pages project for this update. The first-time setup sections below apply only if GitHub/Pages setup is still needed. Cloudflare account settings and the live deployment have not been inspected.
+
+1. Review and commit the changes you intend to publish. To publish only the resume update and its documentation, run from the repository root:
+
+   ```powershell
+   cd D:\Learning\Portfolio
+   git add apps/web/public/resume/Hari_Prakash_K_Resume.pdf docs/deployment.md spec.md PROJECT_NOTES.md ToTest.md
+   git diff --cached --stat
+   git commit -m "fix: refresh downloadable resume PDF"
+   git push -u origin feature/next-update
+   ```
+
+   Several other local changes already exist, including edits to these documentation files. Review the staged changes before committing; include other source/assets explicitly if you also intend to publish those changes. The root PDF is ignored by Git; the public copy is the file that Pages publishes.
+
+2. In Cloudflare **Workers & Pages**, open the existing **Pages** project. Confirm the connected repository is `HariprakashKhp/Portfolio`, production branch is `main`, root is `apps/web`, build command is `npm run build`, and output is `out`. Set `NODE_VERSION=24` and `PRODUCTION_BRANCH=main` in both environments. Keep preview `ALLOW_INDEXING=false`; production may use `true` once the custom domain is ready. These values come from this repository's static-export configuration. [Cloudflare static Next.js guide](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/), [build configuration](https://developers.cloudflare.com/pages/configuration/build-configuration/), [Node version selection](https://developers.cloudflare.com/pages/configuration/build-image/).
+3. Open a GitHub pull request from `feature/next-update` into `main`. If preview deployments are enabled, the branch push creates a preview. Review it, including the Resume download, then merge the PR to publish. With production deployments enabled, Cloudflare builds and deploys the new `main` commit automatically. [Git integration](https://developers.cloudflare.com/pages/get-started/git-integration/).
+4. Wait for the production deployment to report success and confirm its commit matches the merged update. Open `https://hariprakash.in/resume/` and download the PDF. Its direct asset URL is `https://hariprakash.in/resume/Hari_Prakash_K_Resume.pdf`. If an older PDF appears, retry in a fresh browser session before investigating any custom cache rules. These are checks for the owner to perform; the agent has not run them.
+
+If there is no existing Pages project, follow sections 2–3 below, then associate `hariprakash.in` through section 5. Reuse working custom-domain settings when updating an existing project.
+
+### Future resume replacements
+
+Replacing the ignored root PDF alone does not update the deployed asset. After replacing it, copy it to the tracked public path before committing:
+
+```powershell
+Copy-Item -LiteralPath .\Hari_Prakash_K_Resume.pdf -Destination .\apps\web\public\resume\Hari_Prakash_K_Resume.pdf -Force
+```
+
+The 2026-11-16 replacement is already copied. All existing download links use this public path. Publish the public copy through the branch/PR flow above.
+
 ## How CI/CD will work
 
 Cloudflare Pages is the build and deployment runner. Connect GitHub once; later branch pushes create previews and pushes/merges to `main` update production. Cloudflare reports deployment status in GitHub. A separate GitHub Actions workflow or deployment API token is not needed for this approach. [Cloudflare Git integration](https://developers.cloudflare.com/pages/configuration/git-integration/)
@@ -66,13 +98,24 @@ Set the following build environment values initially:
 | Variable | Production | Preview |
 |---|---|---|
 | `NODE_VERSION` | `24` | `24` |
-| `ALLOW_INDEXING` | `false` | `false` |
+| `ALLOW_INDEXING` | `false` initially; `true` when the custom domain is ready | `false` |
+| `PRODUCTION_BRANCH` | `main` | `main` |
 
 `ALLOW_INDEXING` is a build-time setting, not a secret. The application defaults to `false` when it is absent. `.env.example` documents the local default; it is not a deployed secret file.
 
 Save the configuration and start the first deployment. Open the provided `pages.dev` URL after it reports success. If it fails, inspect the build logs before changing the framework or adding adapters.
 
 ## 4. Use previews for future changes
+
+The owner reports production is live. To finish separation on the existing Pages project:
+
+1. Open Workers & Pages, select the existing **Pages** project, and open Settings > Builds & deployments. Confirm its production branch is `main` and enable preview deployments for non-production branches in Branch deployment controls. Do not create another Worker or change the site's existing DNS.
+2. In Settings > Environment variables, choose the **Production** environment and set `PRODUCTION_BRANCH=main`. Set `ALLOW_INDEXING=true` only if the real custom domain is ready to be indexed; otherwise keep it false. In **Preview**, set `PRODUCTION_BRANCH=main` and `ALLOW_INDEXING=false`. Keep Node 24 in both environments.
+3. Keep root `apps/web`, build `npm run build`, and output `out`. Save the settings. A new deployment is required for environment changes to affect exported HTML.
+4. Use a feature branch/PR for future edits and review its Cloudflare preview URL. Merge into `main` when ready to publish. The agent has not created branches, pushed commits, or changed dashboard settings.
+
+The repository now enforces a second safeguard in `src/lib/metadata.ts`: on Cloudflare Pages (`CF_PAGES=1`), only `CF_PAGES_BRANCH` matching `PRODUCTION_BRANCH` may enable indexing, and it still requires `ALLOW_INDEXING=true`. Preview or missing branch names remain noindex even if the opt-in flag is accidentally copied. These provider variables are supplied by Pages; do not override them manually. If you later rename the production branch, update both the dashboard branch and `PRODUCTION_BRANCH`. Canonical and social URLs remain on the custom domain. [Build environment variables](https://developers.cloudflare.com/pages/configuration/build-configuration/)
+
 
 Enable preview builds for non-production branches in the Pages branch settings. For subsequent edits:
 
@@ -139,8 +182,8 @@ In the Pages project's deployment history, select an earlier successful **produc
 ## Recorded deployment state
 
 - Local launch preparation: implemented, awaiting requested testing.
-- Git initialization and first push: to be performed by the owner.
+- Owner report: the website is live; preview/production separation is not yet completed. No live verification was performed for this change.
 - Cloudflare project/Git integration: not configured by the agent.
 - Registrar/nameservers: not supplied or changed.
 - Live HTTPS/custom domain: not verified.
-- Production indexing: disabled by default until explicitly enabled during launch.
+- Production indexing: opt-in with ALLOW_INDEXING=true; Cloudflare branch guard implemented. Actual dashboard values and deployment output remain unverified.

@@ -2,8 +2,9 @@ import { CliIntro } from "@/components/cli-intro";
 import { ActionLink } from "@/components/action-link";
 import { ArrowIcon } from "@/components/icon";
 import { ProjectCard } from "@/components/project-card";
+import { ImpactHighlights } from "@/components/impact-highlights";
 import { projects } from "@/content/projects";
-import { focusAreas, impactHighlights, profile } from "@/data/portfolio";
+import { focusAreas, profile } from "@/data/portfolio";
 
 export default function Home() {
   const name = profile.name ?? "Engineering";
@@ -47,16 +48,7 @@ export default function Home() {
             Highlights from my professional work at Odessa Solutions.
           </p>
         </div>
-        <dl className="impact-grid">
-          {impactHighlights.map((highlight) => (
-            <div className="impact-item" key={highlight.title}>
-              <dt>{highlight.title}</dt>
-              <dd className="impact-value">{highlight.value}</dd>
-              <dd className="impact-description">{highlight.description}</dd>
-              <dd className="impact-context">{highlight.context}</dd>
-            </div>
-          ))}
-        </dl>
+        <ImpactHighlights />
         <ActionLink href="/experience/" variant="text">
           Read the experience behind these results
         </ActionLink>

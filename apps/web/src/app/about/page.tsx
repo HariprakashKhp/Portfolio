@@ -3,20 +3,27 @@ import { Fragment } from "react";
 import { createPageMetadata } from "@/lib/metadata";
 import { PageHeading } from "@/components/page-heading";
 import { LearningSection } from "@/components/learning-section";
+import { ActionLink } from "@/components/action-link";
+import { ProjectOverview } from "@/components/project-overview";
 import { profile, skillGroups } from "@/data/portfolio";
 
 export const metadata: Metadata = createPageMetadata({
   title: "About",
   path: "/about/",
-  description: "Career background, engineering interests, skills, education, and continuing learning from Hari Prakash K.",
+  description:
+    "Meet Hari Prakash K: Staff Engineer at Odessa Solutions working on Python backends and agentic AI, with personal AWS, debugging, and evaluation projects.",
 });
 
 export default function About() {
   return (
     <div className="container inner-page about-page portrait-surface">
-      <PageHeading eyebrow="About" title="The person behind the systems.">
+      <PageHeading
+        eyebrow="About"
+        title="Backend engineering. Applied AI. Ownership."
+      >
         <p>
-          {profile.headline}. Based in {profile.location}.
+          {profile.currentRole} at {profile.employer}. Based in{" "}
+          {profile.location}.
         </p>
       </PageHeading>
       <div className="about-grid">
@@ -40,11 +47,15 @@ export default function About() {
             ))}
             .
           </p>
+          <ActionLink href="/experience/" variant="text">
+            Read my experience and engineering outcomes
+          </ActionLink>
         </section>
         <div className="focus-stack">
           {skillGroups.map((area) => (
             <article key={area.title}>
               <h2>{area.title}</h2>
+              {area.description && <p>{area.description}</p>}
               <ul className="tags">
                 {area.skills.map((topic) => (
                   <li key={topic}>{topic}</li>
@@ -54,6 +65,7 @@ export default function About() {
           ))}
         </div>
       </div>
+      <ProjectOverview />
       <section className="profile-section" aria-labelledby="education-title">
         <p className="eyebrow">Education</p>
         <h2 id="education-title">Engineering and business.</h2>
